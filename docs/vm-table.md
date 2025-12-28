@@ -1,149 +1,143 @@
-# **Proxmox Infrastructure Lab**
+# **Laboratorio de Infraestructura Proxmox**
 
-This project involves a virtualized infrastructure lab deployed on **Proxmox VE**. The environment simulates a small corporate network, integrating **Linux and Windows servers**, centralized authentication, network services, and remote administration.
+Este proyecto consiste en un laboratorio de infraestructura virtualizada desplegado sobre **Proxmox VE**. El entorno simula una red empresarial pequeña, integrando **servidores Linux y Windows**, autenticación centralizada, servicios de red y administración remota.
 
-## **Overview**
+## **Descripción General**
 
-This project presents a virtualized infrastructure lab deployed on **Proxmox VE**, designed to simulate a basic corporate environment. The lab integrates **Windows and Linux servers**, domain services, automatic IP address assignment, and remote administration.
+Este proyecto presenta un laboratorio de infraestructura virtualizada desplegado sobre **Proxmox VE**, diseñado para simular un entorno empresarial básico. El laboratorio integra **servidores Windows y Linux**, servicios de dominio, asignación automática de direcciones IP y administración remota.
 
-The primary goal is to demonstrate practical knowledge in virtualization, networking, Active Directory, and technical documentation through a functional and validated environment.
-
----
-
-## **Objectives**
-
-The objectives of this project are to:
-
-- Implement a virtualized environment using **Proxmox VE**.
-- Configure **Windows Server 2016** as the domain controller.
-- Implement **Active Directory, DNS, DHCP, and Remote Desktop (RDP)** services.
-- Deploy an **Ubuntu Server** with SSH and Web services.
-- Join a **Windows 7 client** to the domain.
-- Validate connectivity and service functionality.
-- Document the infrastructure with diagrams and evidence.
+El objetivo principal es demostrar conocimientos prácticos en virtualización, redes, Active Directory y documentación técnica mediante un entorno funcional y validado.
 
 ---
 
-## **Architecture**
+## **Objetivos**
 
-The infrastructure is hosted on **Proxmox VE**, using a bridge network (`vmbr0`) within the network `192.168.3.0/24`.
+Los objetivos de este proyecto son:
 
-Windows Server 2016 acts as the central server, providing domain and network services, while Ubuntu Server provides Linux services. A Windows 7 client consumes the network services via DHCP and authenticates against the domain.
+- Implementar un entorno virtualizado utilizando **Proxmox VE**.
+- Configurar **Windows Server 2016** como el controlador de dominio.
+- Implementar los servicios de **Active Directory, DNS, DHCP y Escritorio Remoto (RDP)**.
+- Desplegar un **Ubuntu Server** con servicios SSH y Web.
+- Unir un **cliente Windows 7** al dominio.
+- Validar la conectividad y el funcionamiento de los servicios.
+- Documentar la infraestructura con diagramas y evidencias.
 
 ---
 
-## **Virtual Machines**
+## **Arquitectura**
 
-Here are the virtual machines used in the lab:
+La infraestructura se encuentra alojada sobre **Proxmox VE**, utilizando una red bridge (`vmbr0`) dentro de la red `192.168.3.0/24`.
+
+Windows Server 2016 actúa como servidor central, proporcionando servicios de dominio y red, mientras que Ubuntu Server ofrece servicios Linux. Un cliente Windows 7 consume los servicios de red mediante DHCP y se autentica contra el dominio.
+
+---
+
+## **Máquinas Virtuales**
+
+A continuación se describen las máquinas virtuales utilizadas en el laboratorio:
 
 ### **Ubuntu Server**
 
-| IP Address      | Services          | Role                           |
-|-----------------|-------------------|--------------------------------|
-| 192.168.3.16   | SSH and Web Server| Linux services server          |
+| Dirección IP    | Servicios           | Rol                            |
+|-----------------|---------------------|--------------------------------|
+| 192.168.3.16   | SSH y Servidor Web  | Servidor de servicios Linux    |
+
+- **Descripción**: Ubuntu Server proporciona acceso SSH y un servidor web (Apache o similar) para alojar aplicaciones y servicios web.
 
 ---
 
 ### **Windows Server 2016**
 
-| IP Address      | Services                                  | Role                                   |
+| Dirección IP    | Servicios                                  | Rol                                   |
 |-----------------|-------------------------------------------|----------------------------------------|
-| 192.168.3.18   | Active Directory services                 | Domain controller and network services|
+| 192.168.3.18   | Servicios de Active Directory              | Controlador de dominio y servicios de red|
 |                 | DNS, DHCP                                  |                                        |
-|                 | Remote Desktop (RDP)                      |                                        |
-|                 | Domain: Portafolio.local, User: jose1     |                                        |
+|                 | Escritorio Remoto (RDP)                    |                                        |
+|                 | Dominio: Portafolio.local, Usuario: jose1 |                                        |
+
+- **Descripción**: Windows Server 2016 actúa como el controlador de dominio, proporcionando autenticación centralizada (Active Directory), servicios DNS, DHCP y Escritorio Remoto para la administración del entorno.
 
 ---
 
-### **Windows 7 (Client)**
+### **Windows 7 (Cliente)**
 
-| IP Address      | Configuration                                             | Role                            |
-|-----------------|------------------------------------------------------------|---------------------------------|
-| Assigned by DHCP| Joined to domain `portafolio.local` with user `Jose1`      | Domain client                   |
+| Dirección IP    | Configuración                                              | Rol                            |
+|-----------------|-------------------------------------------------------------|---------------------------------|
+| Asignada por DHCP| Unido al dominio `portafolio.local` con el usuario `Jose1` | Cliente del dominio            |
 
----
-
-## **Key Features**
-
-Here are the key features of the infrastructure:
-
-- Virtualized environment using **Proxmox VE** for efficient resource management.
-- **Active Directory** implementation for centralized authentication and user management.
-- **DNS and DHCP** services configured on Windows Server 2016 to manage network addressing.
-- Remote server management using **RDP** (Remote Desktop Protocol).
-- **Ubuntu Server** offering **SSH** and **Web** services for remote access and web hosting.
-- **Windows 7** client joined to the domain for centralized authentication and network service access.
-- Automatic IP assignment to clients via DHCP.
-- Seamless integration of **Linux** and **Windows** systems within the same network environment.
-- Full documentation with network diagrams and proof of functionality.
+- **Descripción**: El cliente Windows 7 está unido al dominio `portafolio.local` y está configurado para utilizar los servicios de red proporcionados por el controlador de dominio Windows Server 2016.
 
 ---
 
-## **Evidence**
+## **Características Claves**
 
-Here are some screenshots showcasing the configuration and functionality of the system:
+A continuación, se describen las características clave de la infraestructura:
+
+- Entorno virtualizado utilizando **Proxmox VE** para una gestión eficiente de recursos.
+- Implementación de **Active Directory** para autenticación centralizada y gestión de usuarios.
+- Servicios de **DNS y DHCP** configurados en Windows Server 2016 para gestionar la asignación de direcciones en la red.
+- Administración remota del servidor utilizando **RDP** (Protocolo de Escritorio Remoto).
+- **Ubuntu Server** ofreciendo servicios **SSH** y **Web** para acceso remoto y alojamiento web.
+- **Windows 7** cliente unido al dominio para autenticación centralizada y acceso a servicios de red.
+- Asignación automática de direcciones IP a los clientes mediante DHCP.
+- Integración sin problemas de sistemas **Linux** y **Windows** dentro de la misma red.
+- Documentación completa con diagramas de red y pruebas de funcionamiento.
+
+---
+
+## **Evidencia**
+
+A continuación se muestran algunas capturas de pantalla que muestran la configuración y el funcionamiento del sistema:
 
 ![Proxmox](../screenshots/PROXMOX.png)
 
-- **Description**: Proxmox VE dashboard showing the virtual machine setup.
+- **Descripción**: Vista del panel de Proxmox VE mostrando la configuración de las máquinas virtuales.
 
-![Ubuntu Page](../screenshots/PAGINA-UBUNTU.png)
+![Página Ubuntu](../screenshots/PAGINA-UBUNTU.png)
 
-- **Description**: Web page hosted on the Ubuntu Server.
+- **Descripción**: Página web alojada en el servidor Ubuntu.
 
-![Ubuntu IP](../screenshots/UBUNTO-IP.png)
+![IP de Ubuntu](../screenshots/UBUNTO-IP.png)
 
-- **Description**: IP address of the Ubuntu Server.
+- **Descripción**: Dirección IP del servidor Ubuntu.
 
-![Ubuntu Ping to WDsv](../screenshots/ping-ubuntu.png)
+![Ping de Ubuntu a WDsv](../screenshots/ping-ubuntu.png)
 
-- **Description**: Ping test from Ubuntu Server to Windows Server 2016 to check network connectivity.
+- **Descripción**: Prueba de ping desde el servidor Ubuntu a Windows Server 2016 para comprobar la conectividad de la red.
 
 ![Active Directory](../screenshots/DOMINIO-WDSV.png)
 
-- **Description**: Active Directory setup on Windows Server 2016.
+- **Descripción**: Configuración de Active Directory en Windows Server 2016.
 
-![IP of WDsv](../screenshots/IP-WDSV.png)
+![IP de WDsv](../screenshots/IP-WDSV.png)
 
-- **Description**: IP configuration of the Windows Server 2016.
+- **Descripción**: Configuración de IP del servidor Windows Server 2016.
 
-![Active Directory Roles](../screenshots/ROLES-WDSV.png)
+![Roles de Active Directory](../screenshots/ROLES-WDSV.png)
 
-- **Description**: Roles assigned to Windows Server 2016, such as domain controller, DNS, and DHCP services.
+- **Descripción**: Roles asignados al Windows Server 2016, como controlador de dominio, servicios DNS y DHCP.
 
-![User Creation](../screenshots/USUARIO-WDSV.png)
+![Creación de usuario](../screenshots/USUARIO-WDSV.png)
 
-- **Description**: User creation in Active Directory for authentication.
+- **Descripción**: Creación de un usuario en Active Directory para autenticación.
 
-![Ping to WDsv](../screenshots/ping-wdsv.png)
+![Ping a WDsv](../screenshots/ping-wdsv.png)
 
-- **Description**: Ping test from a client (e.g., Windows 7) to the Windows Server 2016.
+- **Descripción**: Prueba de ping desde un cliente (por ejemplo, Windows 7) a Windows Server 2016.
 
-![Windows 7 User](../screenshots/USUARIO-WDS7.png)
+![Usuario Windows 7](../screenshots/USUARIO-WDS7.png)
 
-- **Description**: User login on the Windows 7 client machine.
+- **Descripción**: Inicio de sesión de usuario en la máquina cliente Windows 7.
 
-![Windows 7 Domain](../screenshots/DOMINIO-WDS7.png)
+![Dominio Windows 7](../screenshots/DOMINIO-WDS7.png)
 
-- **Description**: Windows 7 client successfully joined to the domain `portafolio.local`.
+- **Descripción**: Cliente Windows 7 unido al dominio `portafolio.local` con éxito.
 
-![Windows 7 IP](../screenshots/IP-WDS7.png)
+![IP Windows 7](../screenshots/IP-WDS7.png)
 
-- **Description**: IP configuration of the Windows 7 client.
+- **Descripción**: Configuración de IP del cliente Windows 7.
 
-![Windows 7 Ping](../screenshots/ping-wds7.png)
+![Ping Windows 7](../screenshots/ping-wds7.png)
 
-- **Description**: Ping test from Windows 7 client to verify connectivity to the domain controller.
-
-
-
-
-
-
-
-
-
-
-
-
+- **Descripción**: Prueba de ping desde el cliente Windows 7 para verificar la conectividad al controlador de dominio.
 
